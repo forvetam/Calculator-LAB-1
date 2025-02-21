@@ -34,6 +34,9 @@ __published:	// IDE-managed Components
 	void __fastcall ButtonEqualClick(TObject *Sender);
 	void __fastcall NumberPress(TObject *Sender);
 	void __fastcall OperationPress(TObject *Sender);
+	void __fastcall BackspacePress(TObject *Sender);
+	void __fastcall ClearAll(TObject *Sender);
+	void __fastcall SinPress(TObject *Sender);
 private:	// User declarations
 public:		// User declarations
 	__fastcall TForm1(TComponent* Owner);

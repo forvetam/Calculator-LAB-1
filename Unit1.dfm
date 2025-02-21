@@ -41,7 +41,7 @@ object Form1: TForm1
     Font.Style = []
     ParentFont = False
     TabOrder = 1
-    OnClick = OperationPress
+    OnClick = SinPress
   end
   object Button4: TButton
     Left = 32
@@ -56,7 +56,7 @@ object Form1: TForm1
     Font.Style = []
     ParentFont = False
     TabOrder = 2
-    OnClick = OperationPress
+    OnClick = SinPress
   end
   object Button5: TButton
     Left = 32
@@ -116,7 +116,7 @@ object Form1: TForm1
     Font.Style = []
     ParentFont = False
     TabOrder = 6
-    OnClick = OperationPress
+    OnClick = SinPress
   end
   object Button9: TButton
     Left = 32
@@ -176,7 +176,7 @@ object Form1: TForm1
     Font.Style = []
     ParentFont = False
     TabOrder = 10
-    OnClick = OperationPress
+    OnClick = SinPress
   end
   object Button13: TButton
     Left = 32
@@ -236,7 +236,7 @@ object Form1: TForm1
     Font.Style = []
     ParentFont = False
     TabOrder = 14
-    OnClick = OperationPress
+    OnClick = SinPress
   end
   object Button17: TButton
     Left = 32
@@ -251,7 +251,7 @@ object Form1: TForm1
     Font.Style = []
     ParentFont = False
     TabOrder = 15
-    OnClick = OperationPress
+    OnClick = NumberPress
   end
   object Button18: TButton
     Left = 113
@@ -266,7 +266,7 @@ object Form1: TForm1
     Font.Style = []
     ParentFont = False
     TabOrder = 16
-    OnClick = OperationPress
+    OnClick = NumberPress
   end
   object Button19: TButton
     Left = 194
@@ -281,7 +281,7 @@ object Form1: TForm1
     Font.Style = [fsBold]
     ParentFont = False
     TabOrder = 17
-    OnClick = OperationPress
+    OnClick = BackspacePress
   end
   object Button20: TButton
     Left = 275
@@ -296,7 +296,7 @@ object Form1: TForm1
     Font.Style = []
     ParentFont = False
     TabOrder = 18
-    OnClick = OperationPress
+    OnClick = ButtonEqualClick
   end
   object Button1: TButton
     Left = 275
@@ -311,6 +311,6 @@ object Form1: TForm1
     Font.Style = []
     ParentFont = False
     TabOrder = 19
-    OnClick = OperationPress
+    OnClick = ClearAll
   end
 end
