@@ -40,6 +40,7 @@ void __fastcall TForm1::OperationPress(TObject *Sender)
 		}
         TButton * button = dynamic_cast<TButton*>(Sender);
 		Edit1->Text+= button->Caption;
+
 	}
 
 
