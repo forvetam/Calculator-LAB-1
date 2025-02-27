@@ -2,7 +2,7 @@ object Form1: TForm1
   Left = 0
   Top = 0
   Caption = 'Form1'
-  ClientHeight = 484
+  ClientHeight = 486
   ClientWidth = 379
   Color = clBtnFace
   Font.Charset = DEFAULT_CHARSET
@@ -26,6 +26,7 @@ object Form1: TForm1
     ParentFont = False
     ReadOnly = True
     TabOrder = 0
+    ExplicitWidth = 406
   end
   object Button3: TButton
     Left = 275
@@ -55,7 +56,7 @@ object Form1: TForm1
     Font.Style = []
     ParentFont = False
     TabOrder = 2
-    OnClick = OperationPress
+    OnClick = SinPress
   end
   object Button5: TButton
     Left = 32
@@ -115,7 +116,7 @@ object Form1: TForm1
     Font.Style = []
     ParentFont = False
     TabOrder = 6
-    OnClick = OperationPress
+    OnClick = SinPress
   end
   object Button9: TButton
     Left = 32
@@ -175,7 +176,7 @@ object Form1: TForm1
     Font.Style = []
     ParentFont = False
     TabOrder = 10
-    OnClick = OperationPress
+    OnClick = SinPress
   end
   object Button13: TButton
     Left = 32
@@ -235,7 +236,7 @@ object Form1: TForm1
     Font.Style = []
     ParentFont = False
     TabOrder = 14
-    OnClick = OperationPress
+    OnClick = SinPress
   end
   object Button17: TButton
     Left = 32
@@ -265,7 +266,7 @@ object Form1: TForm1
     Font.Style = []
     ParentFont = False
     TabOrder = 16
-    OnClick = CommaPress
+    OnClick = NumberPress
   end
   object Button19: TButton
     Left = 194

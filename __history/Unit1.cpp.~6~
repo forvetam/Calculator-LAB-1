@@ -10,7 +10,6 @@
 TForm1 *Form1;
 
 bool has_sin = false;
-bool neg_first = false;
 //---------------------------------------------------------------------------
 __fastcall TForm1::TForm1(TComponent* Owner)
 	: TForm(Owner)
@@ -37,26 +36,17 @@ void __fastcall TForm1::OperationPress(TObject *Sender)
 	AnsiString equation = Edit1->Text;
 	AnsiString LastCh = AnsiLastChar(equation);
 	if (!equation.IsEmpty()) {
-		if (LastCh == '+' || (LastCh == '-') || LastCh == '/' || LastCh == '*') {
+		if (LastCh == '+' || LastCh == '-' || LastCh == '/' || LastCh == '*') {
 			equation.SetLength(equation.Length()-1);
 			Edit1->Text=equation;
 		}
 		if (has_sin) {
-			if (LastCh == '(') {
-				equation += '0';
-			}
 			equation += ')';
-			has_sin = false;
+            has_sin = false;
 			Edit1->Text=equation;
 		}
-		TButton * button = dynamic_cast<TButton*>(Sender);
+        TButton * button = dynamic_cast<TButton*>(Sender);
 		Edit1->Text+= button->Caption;
-	}
-	else {
-		TButton * button = dynamic_cast<TButton*>(Sender);
-		if (button->Caption == '-') {
-			Edit1->Text+= "0-";
-		}
 	}
 
 
@@ -66,13 +56,8 @@ void __fastcall TForm1::OperationPress(TObject *Sender)
 void __fastcall TForm1::BackspacePress(TObject *Sender)
 {
 	AnsiString equation = Edit1->Text;
-    AnsiString LastCh = AnsiLastChar(equation);
-	if (LastCh==')') {
-		has_sin = true;
-	}
 	equation.SetLength(equation.Length()-1);
 	Edit1->Text=equation;
-
 }
 //---------------------------------------------------------------------------
 
@@ -81,7 +66,6 @@ void __fastcall TForm1::ClearAll(TObject *Sender)
 	AnsiString equation = Edit1->Text;
 	equation.SetLength(0);
 	Edit1->Text=equation;
-	has_sin = false;
 }
 //---------------------------------------------------------------------------
 
@@ -90,27 +74,10 @@ void __fastcall TForm1::SinPress(TObject *Sender)
 	AnsiString equation = Edit1->Text;
 	AnsiString LastCh = AnsiLastChar(equation);
 	if (equation.IsEmpty() || LastCh == '+' || LastCh == '-' || LastCh == '/' || LastCh == '*') {
-		equation += "sin(";
-		has_sin = true;
+		equation += 'sin';
 	}
 	else{
-		equation += "*sin(";
-		has_sin = true;
-	}
-	Edit1->Text=equation;
-}
-//---------------------------------------------------------------------------
-
-void __fastcall TForm1::CommaPress(TObject *Sender)
-{
-	AnsiString equation = Edit1->Text;
-	AnsiString LastCh = AnsiLastChar(equation);
-	if (equation.IsEmpty() || LastCh == '+' || LastCh == '-' || LastCh == '/' || LastCh == '*') {
-		equation += "0,";
-		Edit1->Text=equation;
-	}
-	else if (LastCh != ','){
-		equation += ',';
+	equation += '*sin(';
 	}
 	Edit1->Text=equation;
 }
