@@ -20,37 +20,7 @@ __fastcall TForm1::TForm1(TComponent* Owner)
 
 void __fastcall TForm1::ButtonEqualClick(TObject *Sender)
 {
-	AnsiString equation = Edit1->Text;
-	if(!equation.IsEmpty()){
-		AnsiString LastCh = AnsiLastChar(equation);
-		if (has_comma) { equation += '0'; }
-		if (has_sin) {
-			if (LastCh == '(') {
-					equation += '0';
-			}
-			equation += ')';
-		}
-		if (LastCh == '+' || LastCh == '-') equation += '0';
-		else if(LastCh == '/' || LastCh == '*') equation += '1';
-		/*
-		double f;
-		while (!TryStrToFloat(equation, f)){
-
-
-		}
-		*/
-		int temp;
-		temp = equation.AnsiPos("s");
-		if (temp) {
-				AnsiString prev_substr = equation.SubString(0, temp-1);
-				ShowMessage(prev_substr);
-				AnsiString next_substr = equation.SubString(equation.AnsiPos(")")+1, equation.Length());
-				ShowMessage(next_substr);
-		}
-		Edit1->Text=equation;
-		has_sin = false;
-		has_comma = false;
-	}
+    int i;
 }
 //---------------------------------------------------------------------------
 
@@ -79,11 +49,6 @@ void __fastcall TForm1::OperationPress(TObject *Sender)
 			has_sin = false;
 			Edit1->Text=equation;
 		}
-		if (has_comma) {
-			equation += '0';
-			Edit1->Text=equation;
-			has_comma = false;
-		}
 		TButton * button = dynamic_cast<TButton*>(Sender);
 		Edit1->Text+= button->Caption;
 	}
@@ -107,9 +72,6 @@ void __fastcall TForm1::BackspacePress(TObject *Sender)
 	if (LastCh==')') {
 		has_sin = true;
 	}
-	if (LastCh==',') {
-		has_comma = false;
-	}
 	equation.SetLength(equation.Length()-1);
 	Edit1->Text=equation;
 
@@ -122,7 +84,6 @@ void __fastcall TForm1::ClearAll(TObject *Sender)
 	equation.SetLength(0);
 	Edit1->Text=equation;
 	has_sin = false;
-	has_comma = false;
 }
 //---------------------------------------------------------------------------
 
@@ -139,13 +100,6 @@ void __fastcall TForm1::SinPress(TObject *Sender)
 			equation += "0*sin(";
 			has_comma = false;
 		}
-		else if (has_sin) {
-			if (LastCh == '(') {
-				equation += '0';
-			}
-			equation += ")*sin(";
-			Edit1->Text=equation;
-		}
 		else equation += "*sin(";
 		has_sin = true;
 	}
@@ -159,7 +113,7 @@ void __fastcall TForm1::CommaPress(TObject *Sender)
 	AnsiString equation = Edit1->Text;
 	AnsiString LastCh = AnsiLastChar(equation);
 	if (!has_comma) {
-		if (equation.IsEmpty() || LastCh == '+' || LastCh == '-' || LastCh == '/' || LastCh == '*'|| LastCh == '(') {
+		if (equation.IsEmpty() || LastCh == '+' || LastCh == '-' || LastCh == '/' || LastCh == '*') {
 			equation += "0,";
 			Edit1->Text=equation;
 		}

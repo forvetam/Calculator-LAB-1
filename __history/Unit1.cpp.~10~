@@ -51,6 +51,8 @@ void __fastcall TForm1::ButtonEqualClick(TObject *Sender)
 		has_sin = false;
 		has_comma = false;
 	}
+	/*double f;
+	if(TryStrToFloat("1532", f)) ShowMessage(f); */
 }
 //---------------------------------------------------------------------------
 

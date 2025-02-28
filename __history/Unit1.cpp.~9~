@@ -35,22 +35,21 @@ void __fastcall TForm1::ButtonEqualClick(TObject *Sender)
 		/*
 		double f;
 		while (!TryStrToFloat(equation, f)){
-
+			if (equation.AnsiPos("(")) {
+				ShowMessage(equation.AnsiPos("("));
+			}
 
 		}
 		*/
-		int temp;
-		temp = equation.AnsiPos("s");
-		if (temp) {
-				AnsiString prev_substr = equation.SubString(0, temp-1);
-				ShowMessage(prev_substr);
-				AnsiString next_substr = equation.SubString(equation.AnsiPos(")")+1, equation.Length());
-				ShowMessage(next_substr);
-		}
+        if (equation.AnsiPos("(")) {
+				ShowMessage(equation.AnsiPos("("));
+			}
 		Edit1->Text=equation;
 		has_sin = false;
 		has_comma = false;
 	}
+	/*double f;
+	if(TryStrToFloat("1532", f)) ShowMessage(f); */
 }
 //---------------------------------------------------------------------------
 
@@ -138,13 +137,6 @@ void __fastcall TForm1::SinPress(TObject *Sender)
 		if (has_comma) {
 			equation += "0*sin(";
 			has_comma = false;
-		}
-		else if (has_sin) {
-			if (LastCh == '(') {
-				equation += '0';
-			}
-			equation += ")*sin(";
-			Edit1->Text=equation;
 		}
 		else equation += "*sin(";
 		has_sin = true;
