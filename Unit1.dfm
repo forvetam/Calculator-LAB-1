@@ -10,7 +10,6 @@ object Form1: TForm1
   Font.Height = -12
   Font.Name = 'Segoe UI'
   Font.Style = []
-  OnClick = ButtonEqualClick
   TextHeight = 15
   object Edit1: TEdit
     Left = 0

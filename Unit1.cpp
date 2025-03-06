@@ -2,7 +2,7 @@
 
 #include <vcl.h>
 #pragma hdrstop
-
+#include <math.h>
 #include "Unit1.h"
 //---------------------------------------------------------------------------
 #pragma package(smart_init)
@@ -18,6 +18,7 @@ __fastcall TForm1::TForm1(TComponent* Owner)
 }
 //---------------------------------------------------------------------------
 
+
 void __fastcall TForm1::ButtonEqualClick(TObject *Sender)
 {
 	AnsiString equation = Edit1->Text;
@@ -32,24 +33,148 @@ void __fastcall TForm1::ButtonEqualClick(TObject *Sender)
 		}
 		if (LastCh == '+' || LastCh == '-') equation += '0';
 		else if(LastCh == '/' || LastCh == '*') equation += '1';
-		/*
-		double f;
-		while (!TryStrToFloat(equation, f)){
 
+		int temp=1;
 
-		}
-		*/
-		int temp;
-		temp = equation.AnsiPos("s");
-		if (temp) {
+		while (temp){                                                           // Вычисление синусов
+			temp = equation.AnsiPos("s");
+			if (temp) {
 				AnsiString prev_substr = equation.SubString(0, temp-1);
-				ShowMessage(prev_substr);
 				AnsiString next_substr = equation.SubString(equation.AnsiPos(")")+1, equation.Length());
-				ShowMessage(next_substr);
+				double f; AnsiString number = equation.SubString(equation.AnsiPos("(")+1, equation.AnsiPos(")") - equation.AnsiPos("(")-1);
+				if (TryStrToFloat(number, f)) {
+					double s;
+					if ((f/180==(int)f/180) && int(f)%180==0) s = 0;
+					else s = sin(M_PI * f / 180);
+					equation = prev_substr + s+ next_substr;
+				}
+			}
+			has_sin = false;
+			has_comma = false;
 		}
+		temp=1;
+		while (temp){                                                           // Вычисление произведения
+			temp = equation.AnsiPos("*");
+			if (temp) {
+
+					int number_pos = temp-1; double number1, number2; AnsiString number="";
+					while (number_pos){
+						if (equation[number_pos] == '+' || equation[number_pos] == '-' || equation[number_pos] == '/' || equation[number_pos] == '*') {
+							break;
+						}
+						number = (AnsiString)equation[number_pos] + (AnsiString)number;
+						number_pos--;
+					}
+
+					double f;
+					if (TryStrToFloat(number, f)) number1 = f;
+					else return;
+					AnsiString prev_substr = equation.SubString(0, number_pos);
+
+					number_pos = temp+1; number = "";
+					while (number_pos!=equation.Length()+1){
+						if (equation[number_pos] == '+' || equation[number_pos] == '-' || equation[number_pos] == '/' || equation[number_pos] == '*') {
+							break;
+						}
+						number += equation[number_pos];
+						number_pos++;
+					}
+					if (TryStrToFloat(number, f)) number2 = f;
+					else return;
+					AnsiString next_substr = equation.SubString(number_pos, equation.Length()-number_pos+1);
+
+					equation = prev_substr + number1*number2+ next_substr;
+			}
+
+		}
+		temp=1;
+		while (temp){                                                           // Вычисление произведения
+			temp = equation.AnsiPos("/");
+			if (temp) {
+					int number_pos = temp-1; double number1, number2; AnsiString number="";
+					while (number_pos){
+						if (equation[number_pos] == '+' || equation[number_pos] == '-' || equation[number_pos] == '/' || equation[number_pos] == '*') {
+							break;
+						}
+						number = (AnsiString)equation[number_pos] + (AnsiString)number;
+						number_pos--;
+					}
+
+					double f;
+					if (TryStrToFloat(number, f)) number1 = f;
+					else return;
+					AnsiString prev_substr = equation.SubString(0, number_pos);
+
+					number_pos = temp+1; number = "";
+					while (number_pos!=equation.Length()+1){
+						if (equation[number_pos] == '+' || equation[number_pos] == '-' || equation[number_pos] == '/' || equation[number_pos] == '*') {
+							break;
+						}
+						number += equation[number_pos];
+						number_pos++;
+					}
+					if (TryStrToFloat(number, f)) number2 = f;
+					if (!number2) {
+						Edit1->Text="Деление на ноль";
+						return;
+					}
+					else return;
+					AnsiString next_substr = equation.SubString(number_pos, equation.Length()-number_pos+1);
+
+					equation = prev_substr + number1/number2+ next_substr;
+			}
+
+		}
+		double f;
+		temp = 1;
+		while (equation.AnsiPos("+") || equation.AnsiPos("-")){                  // Вычисление суммы и разности МОЖНО ПОМЕНЯТЬ НА ДРУГОЙ АЛГОРИТМ ГДЕ ПРОСТО СКЛАДЫВАЕТ И ВЫЧИТАЕТ ПО ПОРЯДКУ
+
+			if (equation.AnsiPos("+") && equation.AnsiPos("+") < equation.AnsiPos("-") || !(equation.AnsiPos("-"))){
+				temp = equation.AnsiPos("+");
+
+			}
+			else temp = equation.AnsiPos("-");
+
+			if (!TryStrToFloat(equation, f)) {
+					if (true) {
+
+					}
+					int number_pos = temp-1; double number1, number2; AnsiString number="";
+					while (number_pos){
+						if (equation[number_pos] == '+' || equation[number_pos] == '-' || equation[number_pos] == '/' || equation[number_pos] == '*') {
+							break;
+						}
+						number = (AnsiString)equation[number_pos] + (AnsiString)number;
+						number_pos--;
+					}
+
+					double f;
+					if (TryStrToFloat(number, f)) number1 = f;
+					else return;
+					AnsiString prev_substr = equation.SubString(0, number_pos);
+
+					number_pos = temp+1; number = "";
+					while (number_pos!=equation.Length()+1){
+						if (equation[number_pos] == '+' || equation[number_pos] == '-' || equation[number_pos] == '/' || equation[number_pos] == '*') {
+							break;
+						}
+						number += equation[number_pos];
+						number_pos++;
+					}
+					if (TryStrToFloat(number, f)) number2 = f;
+					else return;
+					AnsiString next_substr = equation.SubString(number_pos, equation.Length()-number_pos+1);
+
+					if (equation[temp]=='+') {
+						equation = prev_substr + (number1+number2) + next_substr;
+					}
+					else equation = prev_substr + (number1-number2) + next_substr;
+			}
+			else break;
+
+		}
+
 		Edit1->Text=equation;
-		has_sin = false;
-		has_comma = false;
 	}
 }
 //---------------------------------------------------------------------------
@@ -66,6 +191,7 @@ void __fastcall TForm1::OperationPress(TObject *Sender)
 {
 	AnsiString equation = Edit1->Text;
 	AnsiString LastCh = AnsiLastChar(equation);
+	TButton * button = dynamic_cast<TButton*>(Sender);
 	if (!equation.IsEmpty()) {
 		if (LastCh == '+' || (LastCh == '-') || LastCh == '/' || LastCh == '*') {
 			equation.SetLength(equation.Length()-1);
@@ -73,7 +199,13 @@ void __fastcall TForm1::OperationPress(TObject *Sender)
 		}
 		if (has_sin) {
 			if (LastCh == '(') {
-				equation += '0';
+				if (button->Caption!='-') {
+					equation += '0';
+				}
+				else{
+					Edit1->Text+= button->Caption;
+					return;
+				}
 			}
 			equation += ')';
 			has_sin = false;
@@ -84,7 +216,7 @@ void __fastcall TForm1::OperationPress(TObject *Sender)
 			Edit1->Text=equation;
 			has_comma = false;
 		}
-		TButton * button = dynamic_cast<TButton*>(Sender);
+
 		Edit1->Text+= button->Caption;
 	}
 	else {
