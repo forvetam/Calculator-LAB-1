@@ -2,7 +2,7 @@ object Form1: TForm1
   Left = 0
   Top = 0
   Caption = 'Form1'
-  ClientHeight = 484
+  ClientHeight = 481
   ClientWidth = 379
   Color = clBtnFace
   Font.Charset = DEFAULT_CHARSET
@@ -15,11 +15,12 @@ object Form1: TForm1
     Left = 0
     Top = 0
     Width = 379
-    Height = 62
+    Height = 65
     Align = alTop
+    AutoSize = False
     Font.Charset = DEFAULT_CHARSET
     Font.Color = clWindowText
-    Font.Height = -40
+    Font.Height = -32
     Font.Name = 'Segoe UI'
     Font.Style = []
     ParentFont = False
@@ -28,7 +29,7 @@ object Form1: TForm1
   end
   object Button3: TButton
     Left = 275
-    Top = 157
+    Top = 152
     Width = 75
     Height = 75
     Caption = 'sin'
@@ -43,7 +44,7 @@ object Form1: TForm1
   end
   object Button4: TButton
     Left = 32
-    Top = 76
+    Top = 71
     Width = 75
     Height = 75
     Caption = '/'
@@ -58,7 +59,7 @@ object Form1: TForm1
   end
   object Button5: TButton
     Left = 32
-    Top = 157
+    Top = 152
     Width = 75
     Height = 75
     Caption = '7'
@@ -73,7 +74,7 @@ object Form1: TForm1
   end
   object Button6: TButton
     Left = 113
-    Top = 157
+    Top = 152
     Width = 75
     Height = 75
     Caption = '8'
@@ -88,7 +89,7 @@ object Form1: TForm1
   end
   object Button7: TButton
     Left = 194
-    Top = 157
+    Top = 152
     Width = 75
     Height = 75
     Caption = '9'
@@ -103,7 +104,7 @@ object Form1: TForm1
   end
   object Button8: TButton
     Left = 113
-    Top = 76
+    Top = 71
     Width = 75
     Height = 75
     Caption = '*'
@@ -118,7 +119,7 @@ object Form1: TForm1
   end
   object Button9: TButton
     Left = 32
-    Top = 238
+    Top = 233
     Width = 75
     Height = 75
     Caption = '4'
@@ -133,7 +134,7 @@ object Form1: TForm1
   end
   object Button10: TButton
     Left = 113
-    Top = 238
+    Top = 233
     Width = 75
     Height = 75
     Caption = '5'
@@ -148,7 +149,7 @@ object Form1: TForm1
   end
   object Button11: TButton
     Left = 194
-    Top = 238
+    Top = 233
     Width = 75
     Height = 75
     Caption = '6'
@@ -163,7 +164,7 @@ object Form1: TForm1
   end
   object Button12: TButton
     Left = 275
-    Top = 76
+    Top = 71
     Width = 75
     Height = 75
     Caption = '-'
@@ -178,7 +179,7 @@ object Form1: TForm1
   end
   object Button13: TButton
     Left = 32
-    Top = 319
+    Top = 314
     Width = 75
     Height = 75
     Caption = '1'
@@ -193,7 +194,7 @@ object Form1: TForm1
   end
   object Button14: TButton
     Left = 113
-    Top = 319
+    Top = 314
     Width = 75
     Height = 75
     Caption = '2'
@@ -208,7 +209,7 @@ object Form1: TForm1
   end
   object Button15: TButton
     Left = 194
-    Top = 319
+    Top = 314
     Width = 75
     Height = 75
     Caption = '3'
@@ -223,7 +224,7 @@ object Form1: TForm1
   end
   object Button16: TButton
     Left = 194
-    Top = 76
+    Top = 71
     Width = 75
     Height = 75
     Caption = '+'
@@ -238,7 +239,7 @@ object Form1: TForm1
   end
   object Button17: TButton
     Left = 32
-    Top = 400
+    Top = 395
     Width = 75
     Height = 75
     Caption = '0'
@@ -253,7 +254,7 @@ object Form1: TForm1
   end
   object Button18: TButton
     Left = 113
-    Top = 400
+    Top = 395
     Width = 75
     Height = 75
     Caption = ','
@@ -268,7 +269,7 @@ object Form1: TForm1
   end
   object Button19: TButton
     Left = 194
-    Top = 400
+    Top = 395
     Width = 75
     Height = 75
     Caption = '<-'
@@ -283,7 +284,7 @@ object Form1: TForm1
   end
   object Button20: TButton
     Left = 275
-    Top = 238
+    Top = 233
     Width = 75
     Height = 156
     Caption = '='
@@ -298,7 +299,7 @@ object Form1: TForm1
   end
   object Button1: TButton
     Left = 275
-    Top = 400
+    Top = 395
     Width = 75
     Height = 75
     Caption = 'AC'
