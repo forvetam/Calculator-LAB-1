@@ -35,6 +35,9 @@ void __fastcall TForm1::ButtonEqualClick(TObject *Sender)
 		if (LastCh == '+' || LastCh == '-') equation += '0';
 		else if(LastCh == '/' || LastCh == '*') equation += '1';
 
+        has_sin = false;
+		has_comma = false;
+
 		// Вычисление синусов
 		int temp=1;
 		while (temp){
@@ -50,8 +53,6 @@ void __fastcall TForm1::ButtonEqualClick(TObject *Sender)
 					equation = prev_substr + s+ next_substr;
 				}
 			}
-			has_sin = false;
-			has_comma = false;
 		}
 
 		// Обработка минусов
@@ -161,15 +162,11 @@ void __fastcall TForm1::OperationPress(TObject *Sender)
 		Edit1->Text+= button->Caption;
 	}
 	else {
-		TButton * button = dynamic_cast<TButton*>(Sender);
 		if (button->Caption == '-') {
 			Edit1->Text+= "0-";
 		}
 	}
-
 	if (has_comma) has_comma = false;
-
-
 }
 //---------------------------------------------------------------------------
 
@@ -191,9 +188,7 @@ void __fastcall TForm1::BackspacePress(TObject *Sender)
 
 void __fastcall TForm1::ClearAll(TObject *Sender)
 {
-	AnsiString equation = Edit1->Text;
-	equation.SetLength(0);
-	Edit1->Text=equation;
+	Edit1->Text="";
 	has_sin = false;
 	has_comma = false;
 }
@@ -208,16 +203,20 @@ void __fastcall TForm1::SinPress(TObject *Sender)
 		has_sin = true;
 	}
 	else{
-		if (has_comma) {
+		if (has_sin) {
+			if (LastCh == '(') {
+				equation += "0)*sin(";
+			}
+			else if (has_comma) {
+				equation += "0)*sin(";
+				has_comma = false;
+			}
+			else equation += ")*sin(";
+			Edit1->Text=equation;
+		}
+		else if (has_comma) {
 			equation += "0*sin(";
 			has_comma = false;
-		}
-		else if (has_sin) {
-			if (LastCh == '(') {
-				equation += '0';
-			}
-			equation += ")*sin(";
-			Edit1->Text=equation;
 		}
 		else equation += "*sin(";
 		has_sin = true;
@@ -236,7 +235,7 @@ void __fastcall TForm1::CommaPress(TObject *Sender)
 			equation += "0,";
 			Edit1->Text=equation;
 		}
-		else if (LastCh != ','){
+		else{
 			equation += ',';
 		}
 		Edit1->Text=equation;
